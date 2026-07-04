@@ -1,0 +1,25 @@
+# Pre-commit hook for week3 monorepo
+# Runs ESLint + Prettier on frontend JS/JSX files
+# Runs Ruff check + format on backend Python files
+
+echo "🔍 Running pre-commit checks..."
+
+# ── Frontend: ESLint + Prettier via lint-staged ──────────────
+FRONTEND_FILES=$(git diff --cached --name-only --diff-filter=ACMR | grep "^frontend/src/.*\.\(js\|jsx\)$" || true)
+
+if [ -n "$FRONTEND_FILES" ]; then
+  echo "📦 Frontend: running ESLint + Prettier..."
+  (cd frontend && npx lint-staged) || exit 1
+fi
+
+# ── Backend: Ruff check + format ────────────────────────────
+BACKEND_FILES=$(git diff --cached --name-only --diff-filter=ACMR | grep "^backend/.*\.py$" || true)
+
+if [ -n "$BACKEND_FILES" ]; then
+  echo "🐍 Backend: running Ruff..."
+  d:/iccode/venv/Scripts/ruff check --fix backend/ || exit 1
+  d:/iccode/venv/Scripts/ruff format backend/ || exit 1
+  git add backend/
+fi
+
+echo "✅ All checks passed!"

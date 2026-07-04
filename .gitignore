@@ -1,3 +1,7 @@
+# ─── Root (monorepo) ──────────────────────────────────────────────────────────
+node_modules/
+package-lock.json
+
 # ─── Frontend (React/Vite) ────────────────────────────────────────────────────
 frontend/node_modules/
 frontend/dist/
