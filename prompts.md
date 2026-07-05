@@ -26,7 +26,7 @@ This log documents all AI tool usage during Week 3 of the Arbisoft internship, a
 **Purpose:** Implement login, register, and logout flows in React using JWT tokens stored in localStorage. Protect routes with a PrivateRoute component.
 **Summary:** Built `AuthContext` with React Context API to share auth state across the entire app without prop drilling. Implemented login (stores `access_token` and `refresh_token` in localStorage), logout (clears tokens), and register flows. Built `PrivateRoute` component that redirects unauthenticated users to `/login`. Understood how `useContext` and `createContext` work together.
 
-**Debugging note:** After implementing login, the Navbar was still showing Login/Register links even after a successful login. Diagnosed the bug with Antigravity — the Navbar was reading `user` from `useAuth()`, but `AuthContext` only exposes `isAuthenticated`. Since `user` was always `undefined`, the conditional render always showed the logged-out state. Fixed by changing `const { user, logout } = useAuth()` to `const { isAuthenticated, logout } = useAuth()`.
+**Debugging note:** After implementing login, the Navbar was still showing Login/Register links even after a successful login. Diagnosed the bug with cursor — the Navbar was reading `user` from `useAuth()`, but `AuthContext` only exposes `isAuthenticated`. Since `user` was always `undefined`, the conditional render always showed the logged-out state. Fixed by changing `const { user, logout } = useAuth()` to `const { isAuthenticated, logout } = useAuth()`.
 
 ---
 
@@ -44,21 +44,21 @@ This log documents all AI tool usage during Week 3 of the Arbisoft internship, a
 **Purpose:** Build controlled forms for Login, Register, and AddTask pages with proper validation and error display.
 **Summary:** Implemented controlled inputs using `useState` for each field. Learned why React uses controlled components (value + onChange) instead of uncontrolled refs for form data. Displayed server-side validation errors from the Django backend inline in the form.
 
-**Debugging note:** The Register form was returning `"This field is required."` from the backend. Diagnosed with Antigravity — the Django `RegisterSerializer` requires a `password2` (confirm password) field, but the frontend form only collected `password`. Fixed by adding a Confirm Password field to `Register.jsx` and updating the `register()` function in `AuthContext` to pass `password2` in the API request body.
+**Debugging note:** The Register form was returning `"This field is required."` from the backend. Diagnosed with cursor — the Django `RegisterSerializer` requires a `password2` (confirm password) field, but the frontend form only collected `password`. Fixed by adding a Confirm Password field to `Register.jsx` and updating the `register()` function in `AuthContext` to pass `password2` in the API request body.
 
 ---
 
 ## Day 6 — UI Redesign & CSS Design System
 
-**Tool:** Stitch (Google) + Antigravity (IDE agent)
+**Tool:** Stitch (Google) + cursor (IDE agent)
 **Purpose:** Redesign the frontend UI from a plain light-themed layout to a modern dark-themed design with a consistent design system.
-**Summary:** Used Stitch to generate a new dark-mode UI. Antigravity placed the generated code into the correct files: `index.css` (full dark theme with CSS custom properties), `Tasks.jsx` (card grid layout with priority badges), `AddTask.jsx` (two-column form layout), and `Home.jsx` (gradient hero section). Added the Inter font from Google Fonts to `index.html`. Fixed three issues Stitch missed: the Inter font was referenced in CSS but never loaded in HTML; `.submit-btn` had no styles; and `select option` elements were invisible on dark backgrounds.
+**Summary:** Used Stitch to generate a new dark-mode UI. cursor placed the generated code into the correct files: `index.css` (full dark theme with CSS custom properties), `Tasks.jsx` (card grid layout with priority badges), `AddTask.jsx` (two-column form layout), and `Home.jsx` (gradient hero section). Added the Inter font from Google Fonts to `index.html`. Fixed three issues Stitch missed: the Inter font was referenced in CSS but never loaded in HTML; `.submit-btn` had no styles; and `select option` elements were invisible on dark backgrounds.
 
 ---
 
 ## Day 7 — Linting, Pre-commit Hooks & Git
 
-**Tool:** Claude (Sonnet) + Antigravity (IDE agent)
+**Tool:** Claude (Sonnet) + cursor (IDE agent)
 **Purpose:** Fix ESLint errors caught by Husky pre-commit hooks and successfully commit the week's work.
 **Summary:** Pre-commit hooks (Husky + lint-staged) ran Prettier and ESLint on every staged file before allowing a commit. ESLint caught four errors across three files that could not be auto-fixed:
 
