@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 function Navbar() {
-  const { user, logout } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -16,7 +16,7 @@ function Navbar() {
       <h2 className="navbar-logo">TaskManager</h2>
       <div className="navbar-links">
         <Link to="/">Home</Link>
-        {user ? (
+        {isAuthenticated ? (
           <>
             <Link to="/tasks">Tasks</Link>
             <Link to="/add">Add Task</Link>
